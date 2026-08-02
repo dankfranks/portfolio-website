@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dank Franks — Portfolio</title>
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Lottie Player Web Component -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. BASE & RESET STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGATION
+       ========================================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo img {
+      height: 32px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+    .nav-links a:hover {
+      color: #ff5500;
+      transition: color 0.2s ease;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.1rem;
+    }
+    .social-links a:hover {
+      color: #ff5500;
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      min-height: 75vh;
+      /* RELINK BACKGROUND: Replace placeholder with your background image URL */
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem 2rem 1.5rem;
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      max-width: 650px;
+      width: 100%;
+      padding: 3rem 2rem 2rem 2rem;
+      background: rgba(18, 18, 18, 0.85);
+      border: 1px solid #333;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      position: absolute;
+      top: -45px;
+      left: 50%;
+      transform: translateX(-50%);
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .quote-icon {
+      color: #ff5500;
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .hero-content h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .hero-content p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================================================
+       4. PORTFOLIO CARDS GRID
+       ========================================================================== */
+    .portfolio-grid-section {
+      padding: 4rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+    }
+    .card {
+      background: #141414;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #222;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      text-align: center;
+      padding-bottom: 1.25rem;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #d48344;
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin-top: 1rem;
+      padding: 0 0.5rem;
+    }
+    .card p {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================================================
+       5. FEATURED BANNER
+       ========================================================================== */
+    .featured-banner {
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      background: #111111;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+    .featured-banner h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-family: Georgia, serif;
+    }
+    .featured-banner p {
+      color: #888;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 0.5rem;
+    }
+
+    /* ==========================================================================
+       6. GRAPHIC ARTWORK & FLOATING STROKE BOXES
+       ========================================================================== */
+    .graphic-section {
+      position: relative;
+      min-height: 850px;
+      /* RELINK BACKGROUND: Replace placeholder with abstract graphic artwork */
+      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)),
+                  url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding: 4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .stroke-box {
+      position: absolute;
+      background: rgba(10, 10, 10, 0.88);
+      border: 1px solid #d48344;
+      border-radius: 6px;
+      padding: 1.25rem;
+      max-width: 320px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+    .stroke-box h4 {
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+    .stroke-box p {
+      color: #bbb;
+      font-size: 0.825rem;
+    }
+
+    /* Absolute Placement for Desktop */
+    .box-1 { top: 10%; left: 15%; }
+    .box-2 { top: 28%; right: 15%; }
+    .box-3 { top: 52%; left: 18%; }
+    .box-4 { top: 72%; right: 18%; }
+
+    /* ==========================================================================
+       7. LOTTIE JSON ICON GRID
+       ========================================================================== */
+    .lottie-section {
+      padding: 4rem 1.5rem;
+      background: #050505;
+      text-align: center;
+      border-bottom: 1px solid #1f1f1f;
+    }
+    .lottie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .lottie-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111111;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #222;
+    }
+
+    /* ==========================================================================
+       8. REVIEWS REPEATER
+       ========================================================================== */
+    .reviews-section {
+      padding: 5rem 1.5rem;
+      text-align: center;
+      background: #0d0d0d;
+    }
+    .reviews-section h2 {
+      margin-bottom: 3rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .review-card {
+      text-align: center;
+      background: #121212;
+      padding: 1.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #1f1f1f;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .review-card i {
+      color: #6366f1;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+    .review-card p {
+      color: #bbb;
+      font-size: 0.825rem;
+      margin-bottom: 1.25rem;
+    }
+    .review-card .author {
+      font-weight: bold;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+    .review-card .title {
+      color: #666;
+      font-size: 0.75rem;
+    }
+
+    /* ==========================================================================
+       9. VIDEO SECTION
+       ========================================================================== */
+    .video-section {
+      position: relative;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+    .video-section video {
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 8px;
+    }
+
+    /* ==========================================================================
+       10. FOOTER & SCROLL TOP
+       ========================================================================== */
+    footer {
+      background: #050505;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    footer a {
+      color: #aaa;
+    }
+    footer a:hover {
+      color: #fff;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid #444;
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: background 0.3s, transform 0.2s;
+      z-index: 99;
+    }
+    .back-to-top:hover {
+      background: #ff5500;
+      border-color: #ff5500;
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       11. RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
+       ========================================================================== */
+
+    /* TABLET RESPONSIVE (Max width: 1023px) */
+    @media (max-width: 1023px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .reviews-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      /* Switch floating text boxes to layout flow on tablet */
+      .graphic-section {
+        min-height: auto;
+        padding: 4rem 2rem;
+        gap: 1.5rem;
+      }
+      .stroke-box {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    /* MOBILE RESPONSIVE (Max width: 767px) */
+    @media (max-width: 767px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.75rem;
+      }
+      .portfolio-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      .reviews-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      .hero-section {
+        padding-top: 5rem;
+      }
+      .hero-content h1 {
+        font-size: 1.35rem;
+      }
+      .hero-content p {
+        font-size: 0.85rem;
+      }
+      .featured-banner h2 {
+        font-size: 1.6rem;
+      }
+      .lottie-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .back-to-top {
+        bottom: 1.25rem;
+        right: 1.25rem;
+        width: 38px;
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <!-- RELINK LOGO: Replace src with your image path (e.g. assets/logo.png) -->
+        <img src="https://via.placeholder.com/150x40/000000/FFFFFF?text=DANK+FRANKS" alt="Dank Franks Logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#illustration">Illustration</a></li>
+        <li><a href="#motion">Motion</a></li>
+        <li><a href="#design">Design</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="social-links">
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <!-- RELINK AVATAR: Replace src with your profile avatar image URL -->
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Skylar Avatar" class="hero-avatar" />
+      <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+      <h1>I solve problems and create solutions</h1>
+      <p>using motion graphics and illustrations to elevate tech and manufacturing companies to reach their highest potential.</p>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO CARDS GRID -->
+  <section class="portfolio-grid-section">
+    <div class="portfolio-grid">
+      
+      <!-- CARD 1 -->
+      <div class="card">
+        <!-- RELINK THUMB 1 -->
+        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=500&q=80" alt="Packaging Illustration">
+        <h3>Packaging Illustration</h3>
+        <p>High Detail Branding</p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card">
+        <!-- RELINK THUMB 2 -->
+        <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=500&q=80" alt="Electronics">
+        <h3>Electronics</h3>
+        <p>Packaging & Branding</p>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card">
+        <!-- RELINK THUMB 3 -->
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" alt="Tech in Motion">
+        <h3>Tech in Motion</h3>
+        <p>Corporate design</p>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="card">
+        <!-- RELINK THUMB 4 -->
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=500&q=80" alt="Corporate Office">
+        <h3>Corporate Office</h3>
+        <p>Interactive Interior</p>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="card">
+        <!-- RELINK THUMB 5 -->
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" alt="Concept Tech App">
+        <h3>Concept Tech App</h3>
+        <p>For the community</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURED BANNER -->
+  <section class="featured-banner">
+    <h2>RollingStone</h2>
+    <p>Featured Trend Designer of 2020</p>
+  </section>
+
+  <!-- FLOATING TEXTBOXES / GRAPHIC ARTWORK SECTION -->
+  <section class="graphic-section">
+    <div class="stroke-box box-1">
+      <h4>AI can be fun - but is it helping?</h4>
+      <p>Some generative projects can take days and countless tokens to generate that add up significantly over time.</p>
+    </div>
+    
+    <div class="stroke-box box-2">
+      <h4>Creating the style, before it could be referenced.</h4>
+      <p>I had an idea, so I learned Ps 6. It needed to scale, so I learned Ai 8. To make it move, I figured out Ae CS4. In short, before YouTube had tutorials, I read the textbooks.</p>
+    </div>
+    
+    <div class="stroke-box box-3">
+      <h4>Original content from a creative mind.</h4>
+      <p>In 1 year, AI is theorized to cannibalize itself from referencing its own generated content online, recycling designs you have seen everywhere else.</p>
+    </div>
+    
+    <div class="stroke-box box-4">
+      <h4>They needed a portfolio.</h4>
+      <p>It won't ever be completed. Hopefully it shows who I am. I never needed to learn code.</p>
+    </div>
+  </section>
+
+  <!-- LOTTIE JSON ANIMATIONS GRID -->
+  <section class="lottie-section">
+    <div class="lottie-grid">
+      
+      <!-- LOTTIE PLACEHOLDER 1 -->
+      <!-- Replace the 'src' below with your raw Git URL: https://raw.githubusercontent.com/<user>/<repo>/main/assets/icon1.json -->
+      <div class="lottie-card">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_u4jjb50y.json" background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
+      </div>
+
+      <!-- LOTTIE PLACEHOLDER 2 -->
+      <div class="lottie-card">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_u4jjb50y.json" background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
+      </div>
+
+      <!-- LOTTIE PLACEHOLDER 3 -->
+      <div class="lottie-card">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_u4jjb50y.json" background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
+      </div>
+
+      <!-- LOTTIE PLACEHOLDER 4 -->
+      <div class="lottie-card">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_u4jjb50y.json" background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REVIEWS REPEATER -->
+  <section class="reviews-section">
+    <h2>Folks are talkin'</h2>
+    <div class="reviews-grid">
+      
+      <div class="review-card">
+        <i class="fas fa-quote-left"></i>
+        <p>His contributions were a game-changer for our projects, and I can't recommend him highly enough.</p>
+        <div>
+          <div class="author">Michał R.</div>
+          <div class="title">Senior Designer</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <i class="fas fa-quote-left"></i>
+        <p>If you want to expand your team's creative capabilities or level up your output, Skylar is the guy to talk to.</p>
+        <div>
+          <div class="author">Thomas H.</div>
+          <div class="title">Senior Designer</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <i class="fas fa-quote-left"></i>
+        <p>Skylar is a joy to work with, has a great sense of humor, and takes immense pride in the work that he does.</p>
+        <div>
+          <div class="author">Shawn S.</div>
+          <div class="title">Industrial Engineer</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <i class="fas fa-quote-left"></i>
+        <p>Always pushing past the design itself with creative ideas and constantly learning new technologies.</p>
+        <div>
+          <div class="author">José F.</div>
+          <div class="title">Lead Web Dev</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <i class="fas fa-quote-left"></i>
+        <p>He is one of the most genuine professionals I've encountered, living and working with 100% authenticity.</p>
+        <div>
+          <div class="author">Jason S.</div>
+          <div class="title">Stack Dev</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="video-section">
+    <!-- RELINK VIDEO: Replace placeholder src with your relative path (e.g. assets/hot-air-balloon.mp4) or hosted video link -->
+    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+    </video>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><i class="fab fa-instagram"></i> <a href="https://instagram.com" target="_blank">@dankfranks.art</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">Illustration | Animation | Motion Graphics | Sound Design</p>
+    <p style="margin-top: 0.2rem; font-size: 0.75rem;">&copy; 2026 Dank Franks</p>
+  </footer>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="scrollTopBtn" onclick="scrollToTop()" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
